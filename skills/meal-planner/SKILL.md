@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: LLM / recipe data optional. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "personal-productivity"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L2-L3"
   search-keywords: "meal-planner, Meal Planner, 一周饮食计划, AI meal plan, weekly meal planner, grocery list, 饮食计划, 食谱生成, personal productivity, AI assistant, personal automation, 个人效率, AI助手, 个人自动化"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Generate weekly meal plans and shopping lists from stated dietary preferences, t
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L2-L3
 - **Category:** Personal Productivity / 个人效率
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

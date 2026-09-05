@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Git / build tools / package managers. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "development"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L2-L3"
   search-keywords: "framework-migration, Framework Migration, 技术栈迁移, code migration, framework migration, JavaScript to TypeScript, 框架迁移"
   quality-score: "3.5/5"
@@ -26,13 +27,14 @@ Plan and execute incremental framework, language, SDK, or architecture migration
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 3.5/5
 - **Automation level:** L2-L3
 - **Category:** Development & Engineering / 开发与工程
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

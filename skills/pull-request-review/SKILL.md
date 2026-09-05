@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Git/GitHub optional / static analysis. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "development"
-  status: "production"
+  status: "verified"
+  implementation-status: "definition-only"
   automation-level: "L2-L3"
   search-keywords: "pull-request-review, Pull Request Review, PR 代码审查, AI code review, PR review, GitHub code review, 代码审查, PR审查"
   quality-score: "4.5/5"
@@ -26,13 +27,14 @@ Review diffs for correctness, security, performance, maintainability, tests, and
 
 ## Status / 状态
 
-- **Release status:** 🟢 Production Ready / 成熟可落地
+- **Workflow status:** 🟢 Verified Workflow / 已验证工作流
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** A
 - **Quality score:** 4.5/5
 - **Automation level:** L2-L3
 - **Category:** Development & Engineering / 开发与工程
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

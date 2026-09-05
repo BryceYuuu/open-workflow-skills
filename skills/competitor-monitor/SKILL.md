@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Browser / scheduler / diff / notifications. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "business-growth"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L4"
   search-keywords: "competitor-monitor, Competitor Monitor, 竞争对手自动监控, competitor monitoring, competitive intelligence, competitor tracking, 竞品监控, 竞争对手分析, business automation, growth automation, AI business, 商业自动化, 增长自动化, AI商业"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Monitor authorized public competitor sources, detect meaningful changes, and gen
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L4
 - **Category:** Business & Growth / 商业与增长
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

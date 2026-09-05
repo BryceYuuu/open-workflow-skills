@@ -13,7 +13,7 @@
       "type": "string"
     },
     "version": {
-      "type": "string"
+      "const": "2.0.0"
     },
     "generated_at": {
       "type": "string"
@@ -22,25 +22,30 @@
       "type": "object",
       "required": [
         "total",
-        "production",
+        "verified",
         "integration",
-        "experimental"
+        "experimental",
+        "tested_reference",
+        "definition_only"
       ],
       "properties": {
         "total": {
           "const": 100
         },
-        "production": {
-          "type": "integer",
-          "minimum": 0
+        "verified": {
+          "type": "integer"
         },
         "integration": {
-          "type": "integer",
-          "minimum": 0
+          "type": "integer"
         },
         "experimental": {
-          "type": "integer",
-          "minimum": 0
+          "type": "integer"
+        },
+        "tested_reference": {
+          "type": "integer"
+        },
+        "definition_only": {
+          "type": "integer"
         }
       }
     },
@@ -61,7 +66,8 @@
           "automation_level",
           "description",
           "description_zh",
-          "skill_path"
+          "skill_path",
+          "implementation_status"
         ]
       }
     }

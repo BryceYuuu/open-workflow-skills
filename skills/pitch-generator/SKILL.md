@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: LLM. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "communication-social"
-  status: "production"
+  status: "verified"
+  implementation-status: "definition-only"
   automation-level: "L1-L2"
   search-keywords: "pitch-generator, Pitch Generator, Pitch 生成器, AI pitch generator, elevator pitch, startup pitch, 路演稿, 电梯演讲, communication automation, social automation, AI writing assistant, 沟通自动化, 社交媒体自动化, AI写作"
   quality-score: "4.5/5"
@@ -26,13 +27,14 @@ Generate audience-specific 30-second, 1-minute, and 3-minute pitches from produc
 
 ## Status / 状态
 
-- **Release status:** 🟢 Production Ready / 成熟可落地
+- **Workflow status:** 🟢 Verified Workflow / 已验证工作流
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** A
 - **Quality score:** 4.5/5
 - **Automation level:** L1-L2
 - **Category:** Communication & Social / 沟通与社交
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

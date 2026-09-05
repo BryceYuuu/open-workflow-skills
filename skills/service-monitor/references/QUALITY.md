@@ -2,7 +2,7 @@
 
 ## Current status
 
-- Status: Production Ready / 成熟可落地
+- Status: Verified Workflow / 已验证工作流
 - Audit grade: A
 - Quality score: 4.5/5
 - Automation level: L4
@@ -23,7 +23,7 @@ A successful run must produce the requested artifact **and** evidence that the r
 
 ## Status-specific expectations
 
-This workflow is considered mature enough for repeatable use **when its declared dependencies are present**. Prefer deterministic tooling and automated checks. Human review may still be appropriate for subjective content or high-impact contexts.
+This workflow definition has been reviewed as a mature pattern. Runtime implementation status is tracked separately; a verified workflow may still be definition-only.
 
 ## Core stack
 

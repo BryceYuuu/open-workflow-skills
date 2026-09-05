@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Upscale model/API. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "design-creative"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L3"
   search-keywords: "image-upscale, Image Upscaler, 图片超分与增强, AI image upscaler, 4K upscale, super resolution, 图片超分, 图片变清晰, AI design, design automation, creative automation, AI设计, 设计自动化, 创意工作流"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Upscale and enhance low-resolution images using a configured local or API model,
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L3
 - **Category:** Design & Creative / 设计与创意
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

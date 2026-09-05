@@ -1,0 +1,379 @@
+Metadata-Version: 2.4
+Name: open-workflow-skills
+Version: 2.0.0
+Summary: A bilingual registry and local runtime for reusable AI workflow skills
+Author: BryceYuuu
+License: MIT
+Keywords: ai,agents,agent-skills,automation,workflow,codex,claude-code,cursor
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: media
+Requires-Dist: Pillow>=10; extra == "media"
+Provides-Extra: spreadsheets
+Requires-Dist: openpyxl>=3.1; extra == "spreadsheets"
+Provides-Extra: all
+Requires-Dist: Pillow>=10; extra == "all"
+Requires-Dist: openpyxl>=3.1; extra == "all"
+Dynamic: license-file
+
+# Open Workflow Skills v2
+
+> **100 bilingual AI workflow skills. 15 now ship runnable, smoke-tested reference implementations.**  
+> **100 个中英双语 AI 工作流 Skills，其中 15 个已经提供可运行、可测试的参考实现。**
+
+[![Version](https://img.shields.io/badge/version-2.0.0-111111)](CHANGELOG.md)
+[![Agent Skills](https://img.shields.io/badge/format-Agent%20Skills-111111)](https://agentskills.io/specification)
+[![Skills](https://img.shields.io/badge/skills-100-blue)](#skill-catalog)
+[![Runnable](https://img.shields.io/badge/runnable-15-brightgreen)](#runnable-reference-implementations)
+[![CI](https://github.com/BryceYuuu/open-workflow-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/BryceYuuu/open-workflow-skills/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+**Stop collecting prompts. Install workflows. Run the ones that are implemented.**  
+**别再收藏 Prompt 了：工作流可以安装，已经实现的可以直接跑。**
+
+---
+
+## What changed in v2 / v2 有什么不同
+
+v1 proved that 100 useful workflows can be expressed honestly as Agent Skills. v2 fixes the next problem: **a good workflow definition is not the same thing as runnable software**.
+
+因此 v2 把两个维度彻底拆开：
+
+| Dimension | Meaning |
+|---|---|
+| **Workflow status** | 这个工作流本身是否成熟、是否依赖外部集成、是否仍偏实验性 |
+| **Implementation status** | 当前仓库有没有真正可以运行并经过 smoke test 的代码 |
+
+Current registry:
+
+- 🟢 **47 Verified Workflows** — workflow pattern is mature and auditable.
+- 🔵 **33 Integration Required** — valid workflow, but needs API/App/OAuth/browser/database/infrastructure.
+- 🟡 **20 Experimental / Assisted** — feasible, but quality or end-to-end reliability needs more review.
+- ✅ **15 Tested Reference Implementations** — runnable from this repository and exercised by CI.
+- 📘 **85 Definition-only Skills** — installable Agent Skills, but not falsely presented as executable runtimes.
+
+See [`CHANGELOG.md`](CHANGELOG.md) for the v2 migration notes.
+
+---
+
+## Quick start
+
+### A. Install a Skill definition into an Agent
+
+```bash
+npx skills add BryceYuuu/open-workflow-skills --list
+npx skills add BryceYuuu/open-workflow-skills --skill video-bilingual-subtitles
+```
+
+`npx skills` is a **community ecosystem CLI**, not an OpenAI-official installer. Installing a Skill definition does not magically install FFmpeg, Pillow, OAuth credentials, browser sessions, or paid APIs.
+
+### B. Run the local v2 runtime
+
+```bash
+git clone https://github.com/BryceYuuu/open-workflow-skills.git
+cd open-workflow-skills
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+
+ows --version
+ows list --implemented
+ows doctor image-watermark
+ows test
+```
+
+Optional local extras:
+
+```bash
+pip install -e '.[all]'
+```
+
+Run a skill:
+
+```bash
+ows run cron-builder -- --schedule "every monday at 9:30 am" --command "./backup.sh"
+
+ows run data-cleaner -- \
+  --input examples/customers.csv \
+  --output output/customers-clean.csv \
+  --dedupe email
+```
+
+The `--` separates `ows` arguments from the selected skill's own arguments.
+
+---
+
+## Runnable reference implementations
+
+These 15 skills include `runtime.json`, `scripts/run.py`, and `tests/smoke.py`:
+
+| Skill | What actually runs | Main dependency |
+|---|---|---|
+| `image-watermark` | batch watermark copies + manifest | Pillow |
+| `video-bilingual-subtitles` | timestamped transcript → bilingual SRT; optional ASR/FFmpeg modes | stdlib; optional faster-whisper/FFmpeg |
+| `podcast-digest` | transcript/RSS → digest + metadata | stdlib |
+| `smart-file-organizer` | deterministic dry-run/copy plan | stdlib |
+| `meeting-minutes` | explicit decisions/actions extraction | stdlib |
+| `invoice-data-extractor` | text/OCR → structured invoice JSON | stdlib; optional Tesseract |
+| `spreadsheet-merge` | semantic alias mapping + CSV merge | stdlib |
+| `spreadsheet-dashboard` | CSV stats → self-contained HTML + JSON | stdlib |
+| `data-cleaner` | whitespace cleanup + explicit-key dedupe + report | stdlib |
+| `document-diff` | deterministic document/text diff | stdlib; optional pdftotext |
+| `repository-docs` | repository tree/statistics → overview | stdlib |
+| `unit-test-generator` | Python AST → honest test skeletons | stdlib |
+| `cron-builder` | limited natural-language schedules → cron | stdlib |
+| `palette-extractor` | dominant palette extraction | Pillow |
+| `secret-scanner` | conservative secret-pattern scan + redacted report | stdlib |
+
+These are **reference implementations**, not a claim that every environment or use case is production-safe. Run `ows doctor <skill>` and inspect the skill before granting consequential permissions.
+
+---
+
+## v2 runtime contract
+
+A runnable skill adds:
+
+```text
+skills/<slug>/
+├── SKILL.md
+├── runtime.json
+├── scripts/
+│   └── run.py
+├── tests/
+│   ├── cases.yaml
+│   └── smoke.py
+└── references/
+    └── QUALITY.md
+```
+
+`runtime.json` tells `ows` what it can execute. `SKILL.md` remains the cross-agent workflow definition. The two are deliberately separate.
+
+Useful commands:
+
+```bash
+ows list
+ows list --implemented
+ows info spreadsheet-merge
+ows doctor video-bilingual-subtitles
+ows run spreadsheet-dashboard -- --help
+ows test secret-scanner
+ows test
+ows install image-watermark --target ~/.agents/skills
+```
+
+---
+
+## Safety model
+
+A Skill may request filesystem, shell, network, browser, external-account, or infrastructure capabilities. Installing the definition **does not grant them**.
+
+Default rules in this repository:
+
+1. Preserve source files unless in-place modification is explicitly requested.
+2. Prefer deterministic code for parsing, file transforms, statistics, rendering, and validation.
+3. Never fabricate successful external actions.
+4. Keep payments, signing, production deploys, destructive writes, and other high-impact actions approval-gated.
+5. Report missing dependencies instead of silently installing privileged system software.
+6. Redact secrets in scanner/report output.
+7. A green workflow-status badge is **not** a production certification.
+
+Read [`SECURITY.md`](SECURITY.md) and [`docs/safety.md`](docs/safety.md).
+
+---
+
+## Discover by task / 搜索入口
+
+Search naturally by tasks such as:
+
+**AI agent skills · AI automation · workflow automation · Codex skills · Claude Code skills · Cursor skills · video subtitles · Excel automation · data cleaning · web scraping · debugging agent · DevOps automation · competitor monitoring · RAG · AI 自动化 · AI 工作流 · 视频自动字幕 · Excel 自动化 · 网页爬虫 · 竞品监控 · 论文总结**
+
+The full bilingual alias map lives in [`docs/search-index.md`](docs/search-index.md). Every alias maps to a real skill; it is navigation, not keyword stuffing.
+
+---
+
+## Skill catalog
+
+| # | Skill / 中文 | Category | Workflow | Implementation | Quality | Level |
+|---:|---|---|---|---|---:|---|
+| 01 | [Image Watermark](skills/image-watermark/) / 批量图片水印 | Content & Media | 🟢 Verified | ✅ Runnable | 5.0/5 | `L2` |
+| 02 | [Video Bilingual Subtitles](skills/video-bilingual-subtitles/) / 视频双语字幕 | Content & Media | 🟢 Verified | ✅ Runnable | 4.5/5 | `L2-L3` |
+| 03 | [URL to Short Video](skills/url-to-short-video/) / 网页转短视频 | Content & Media | 🟡 Experimental | 📘 Definition | 3.0/5 | `L3` |
+| 04 | [Social Image Batch](skills/social-image-batch/) / 社媒配图批量生成 | Content & Media | 🔵 Integration | 📘 Definition | 4.0/5 | `L3` |
+| 05 | [Long Video to Clip Candidates](skills/long-video-to-clips/) / 长视频高光候选 | Content & Media | 🟡 Experimental | 📘 Definition | 3.5/5 | `L2-L3` |
+| 06 | [Podcast Digest](skills/podcast-digest/) / 播客摘要与文字稿 | Content & Media | 🟢 Verified | ✅ Runnable | 4.5/5 | `L2-L3` |
+| 07 | [Social Carousel](skills/social-carousel/) / 社交媒体轮播图 | Content & Media | 🔵 Integration | 📘 Definition | 4.0/5 | `L3` |
+| 08 | [Thumbnail Generator](skills/thumbnail-generator/) / 视频封面候选生成 | Content & Media | 🟡 Experimental | 📘 Definition | 3.5/5 | `L3` |
+| 09 | [Meme GIF Generator](skills/meme-gif-generator/) / Meme/GIF 创意生成 | Content & Media | 🟡 Experimental | 📘 Definition | 3.0/5 | `L3` |
+| 10 | [Voice Generator](skills/voice-generator/) / AI 配音生成 | Content & Media | 🔵 Integration | 📘 Definition | 4.0/5 | `L3` |
+| 11 | [Slides to Video](skills/slides-to-video/) / PPT 转讲解视频 | Content & Media | 🟡 Experimental | 📘 Definition | 3.0/5 | `L3` |
+| 12 | [Auto BGM](skills/auto-bgm/) / 视频自动配乐 | Content & Media | 🟡 Experimental | 📘 Definition | 2.5/5 | `L3` |
+| 13 | [Live Teleprompter](skills/live-teleprompter/) / 实时 AI 提词器 | Content & Media | 🟡 Experimental | 📘 Definition | 2.5/5 | `L4` |
+| 14 | [Article to Video](skills/article-to-video/) / 文章转视频 | Content & Media | 🟡 Experimental | 📘 Definition | 3.0/5 | `L3` |
+| 15 | [Recording to Content](skills/recording-to-content/) / 录音多平台内容生成 | Content & Media | 🟢 Verified | 📘 Definition | 4.5/5 | `L2-L3` |
+| 16 | [Smart File Organizer](skills/smart-file-organizer/) / 智能文件整理 | Office & Productivity | 🟢 Verified | ✅ Runnable | 4.5/5 | `L2` |
+| 17 | [Personalized Mail Merge](skills/personalized-mail-merge/) / 个性化批量邮件 | Office & Productivity | 🔵 Integration | 📘 Definition | 4.0/5 | `L3-L4` |
+| 18 | [Document Translator](skills/document-translator/) / 文档翻译与排版保留 | Office & Productivity | 🟡 Experimental | 📘 Definition | 3.0/5 | `L2-L3` |
+| 19 | [Meeting Minutes](skills/meeting-minutes/) / 会议纪要与待办 | Office & Productivity | 🟢 Verified | ✅ Runnable | 4.5/5 | `L2-L3` |
+| 20 | [Chat to Todo](skills/chat-to-todo/) / 聊天消息转待办 | Office & Productivity | 🔵 Integration | 📘 Definition | 4.0/5 | `L4` |
+| 21 | [Inbox Triage](skills/inbox-triage/) / AI 邮件分流 | Office & Productivity | 🔵 Integration | 📘 Definition | 4.5/5 | `L4` |
+| 22 | [Survey Builder](skills/survey-builder/) / 问卷生成与分析 | Office & Productivity | 🔵 Integration | 📘 Definition | 4.0/5 | `L3-L4` |
+| 23 | [Calendar Coordinator](skills/calendar-coordinator/) / 会议时间协调 | Office & Productivity | 🔵 Integration | 📘 Definition | 4.0/5 | `L4` |
+| 24 | [Weekly Report](skills/weekly-report/) / 自动业务周报 | Office & Productivity | 🔵 Integration | 📘 Definition | 4.5/5 | `L4` |
+| 25 | [Expense Parser](skills/expense-parser/) / 报销票据识别 | Office & Productivity | 🔵 Integration | 📘 Definition | 4.5/5 | `L3-L4` |
+| 26 | [SOP Generator](skills/sop-generator/) / 操作流程转 SOP | Office & Productivity | 🟡 Experimental | 📘 Definition | 3.5/5 | `L2-L3` |
+| 27 | [Employee Onboarding](skills/employee-onboarding/) / 新人入职资料生成 | Office & Productivity | 🔵 Integration | 📘 Definition | 4.0/5 | `L3-L4` |
+| 28 | [Contract Signing Workflow](skills/contract-signing-workflow/) / 合同签署流转 | Office & Productivity | 🔵 Integration | 📘 Definition | 3.5/5 | `L4-L5` |
+| 29 | [Invoice Data Extractor](skills/invoice-data-extractor/) / 发票数据提取 | Data & Analytics | 🟢 Verified | ✅ Runnable | 4.5/5 | `L2-L3` |
+| 30 | [Web Data Extractor](skills/web-data-extractor/) / 网页结构化数据采集 | Data & Analytics | 🔵 Integration | 📘 Definition | 4.0/5 | `L2-L4` |
+| 31 | [Sales Forecast](skills/sales-forecast/) / 销售预测 | Data & Analytics | 🟡 Experimental | 📘 Definition | 3.5/5 | `L2` |
+| 32 | [Spreadsheet Merge](skills/spreadsheet-merge/) / 智能表格合并 | Data & Analytics | 🟢 Verified | ✅ Runnable | 4.5/5 | `L2` |
+| 33 | [Spreadsheet Dashboard](skills/spreadsheet-dashboard/) / 表格分析与 Dashboard | Data & Analytics | 🟢 Verified | ✅ Runnable | 4.0/5 | `L2` |
+| 34 | [Trend Research Agent](skills/trend-research/) / 趋势研究 Agent | Data & Analytics | 🟡 Experimental | 📘 Definition | 3.5/5 | `L3-L4` |
+| 35 | [Sentiment Analysis](skills/sentiment-analysis/) / 用户情绪与主题分析 | Data & Analytics | 🔵 Integration | 📘 Definition | 3.5/5 | `L2-L3` |
+| 36 | [Data Anomaly Monitor](skills/data-anomaly-monitor/) / 数据异常监控 | Data & Analytics | 🔵 Integration | 📘 Definition | 4.0/5 | `L4` |
+| 37 | [Document Diff](skills/document-diff/) / 文档语义差异比较 | Data & Analytics | 🟢 Verified | ✅ Runnable | 4.0/5 | `L2-L3` |
+| 38 | [Data Cleaner](skills/data-cleaner/) / AI 数据清洗 | Data & Analytics | 🟢 Verified | ✅ Runnable | 4.5/5 | `L2` |
+| 39 | [Log Analyzer](skills/log-analyzer/) / 日志分析与故障复盘 | Development & Engineering | 🟢 Verified | 📘 Definition | 4.0/5 | `L2` |
+| 40 | [Figma to Frontend](skills/figma-to-frontend/) / Figma 转前端 | Development & Engineering | 🔵 Integration | 📘 Definition | 4.0/5 | `L3-L4` |
+| 41 | [Code Refactor](skills/code-refactor/) / 代码重构 | Development & Engineering | 🟢 Verified | 📘 Definition | 4.5/5 | `L2` |
+| 42 | [Framework Migration](skills/framework-migration/) / 技术栈迁移 | Development & Engineering | 🔵 Integration | 📘 Definition | 3.5/5 | `L2-L3` |
+| 43 | [Repository Documentation](skills/repository-docs/) / 代码仓库文档生成 | Development & Engineering | 🟢 Verified | ✅ Runnable | 4.5/5 | `L2` |
+| 44 | [Pull Request Review](skills/pull-request-review/) / PR 代码审查 | Development & Engineering | 🟢 Verified | 📘 Definition | 4.5/5 | `L2-L3` |
+| 45 | [API Generator](skills/api-generator/) / 自然语言生成 API | Development & Engineering | 🔵 Integration | 📘 Definition | 4.0/5 | `L2-L3` |
+| 46 | [Debug Agent](skills/debug-agent/) / 自动 Debug Agent | Development & Engineering | 🟢 Verified | 📘 Definition | 4.5/5 | `L2` |
+| 47 | [Unit Test Generator](skills/unit-test-generator/) / 单元测试生成器 | Development & Engineering | 🟢 Verified | ✅ Runnable | 4.5/5 | `L2` |
+| 48 | [Cron Builder](skills/cron-builder/) / 定时任务生成器 | Development & Engineering | 🟢 Verified | ✅ Runnable | 5.0/5 | `L2` |
+| 49 | [Image Upscaler](skills/image-upscale/) / 图片超分与增强 | Design & Creative | 🔵 Integration | 📘 Definition | 4.0/5 | `L3` |
+| 50 | [Background Remover](skills/background-remover/) / 自动抠图 | Design & Creative | 🟢 Verified | 📘 Definition | 4.5/5 | `L2-L3` |
+| 51 | [Brand Kit Generator](skills/brand-kit-generator/) / 品牌视觉方向生成 | Design & Creative | 🟡 Experimental | 📘 Definition | 3.0/5 | `L3` |
+| 52 | [Landing Page Builder](skills/landing-page-builder/) / 落地页生成器 | Design & Creative | 🔵 Integration | 📘 Definition | 4.0/5 | `L2-L4` |
+| 53 | [Sketch to UI](skills/sketch-to-ui/) / 草图转高保真 UI | Design & Creative | 🟡 Experimental | 📘 Definition | 3.5/5 | `L3` |
+| 54 | [SVG Icon Generator](skills/svg-icon-generator/) / SVG 图标生成 | Design & Creative | 🔵 Integration | 📘 Definition | 3.5/5 | `L2-L3` |
+| 55 | [Product Mockup Generator](skills/product-mockup/) / 产品 Mockup 生成 | Design & Creative | 🟡 Experimental | 📘 Definition | 3.0/5 | `L3` |
+| 56 | [Palette Extractor](skills/palette-extractor/) / 配色提取 | Design & Creative | 🟢 Verified | ✅ Runnable | 5.0/5 | `L2` |
+| 57 | [Multi-platform Resize](skills/multi-platform-resize/) / 全平台智能尺寸适配 | Design & Creative | 🟡 Experimental | 📘 Definition | 3.5/5 | `L2-L3` |
+| 58 | [Font Pairing](skills/font-pairing/) / 字体搭配建议 | Design & Creative | 🔵 Integration | 📘 Definition | 3.5/5 | `L2-L3` |
+| 59 | [Pricing Analysis](skills/pricing-analysis/) / 定价分析 | Business & Growth | 🟡 Experimental | 📘 Definition | 3.5/5 | `L2-L3` |
+| 60 | [Competitor Monitor](skills/competitor-monitor/) / 竞争对手自动监控 | Business & Growth | 🔵 Integration | 📘 Definition | 4.0/5 | `L4` |
+| 61 | [Earnings Analyzer](skills/earnings-analyzer/) / 财报分析 | Business & Growth | 🟢 Verified | 📘 Definition | 4.5/5 | `L2-L3` |
+| 62 | [Lead Follow-up](skills/lead-followup/) / CRM 线索跟进 | Business & Growth | 🔵 Integration | 📘 Definition | 4.0/5 | `L4` |
+| 63 | [Invoice Generator](skills/invoice-generator/) / 商业发票生成 | Business & Growth | 🟢 Verified | 📘 Definition | 4.5/5 | `L2-L3` |
+| 64 | [Strategy Backtest](skills/strategy-backtest/) / 交易策略回测 | Business & Growth | 🟡 Experimental | 📘 Definition | 3.5/5 | `L2-L3` |
+| 65 | [Market Technical Analysis](skills/market-technical-analysis/) / 市场技术指标分析 | Business & Growth | 🟢 Verified | 📘 Definition | 4.0/5 | `L2-L3` |
+| 66 | [Budget Analyzer](skills/budget-analyzer/) / 预算与现金流分析 | Business & Growth | 🟢 Verified | 📘 Definition | 4.5/5 | `L2-L4` |
+| 67 | [Portfolio Analyzer](skills/portfolio-analyzer/) / 投资组合分析 | Business & Growth | 🟢 Verified | 📘 Definition | 4.5/5 | `L2-L4` |
+| 68 | [Knowledge Base Builder](skills/knowledge-base-builder/) / 知识库生成器 | Business & Growth | 🟢 Verified | 📘 Definition | 4.0/5 | `L2-L3` |
+| 69 | [Conversation Action Items](skills/conversation-action-items/) / 聊天待办提取 | Communication & Social | 🟢 Verified | 📘 Definition | 4.5/5 | `L2` |
+| 70 | [Personalized Greetings](skills/personalized-greetings/) / 个性化祝福 | Communication & Social | 🟢 Verified | 📘 Definition | 4.0/5 | `L1-L2` |
+| 71 | [Press Release Generator](skills/press-release-generator/) / 新闻稿生成器 | Communication & Social | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 72 | [Reply Assistant](skills/reply-assistant/) / 智能回复助手 | Communication & Social | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 73 | [Pitch Generator](skills/pitch-generator/) / Pitch 生成器 | Communication & Social | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 74 | [Social FAQ Reply](skills/social-faq-reply/) / 社交媒体 FAQ 回复 | Communication & Social | 🔵 Integration | 📘 Definition | 4.0/5 | `L3-L4` |
+| 75 | [Speech Writer](skills/speech-writer/) / 演讲稿与演讲提示 | Communication & Social | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 76 | [Decision Matrix](skills/decision-matrix/) / 决策矩阵 | Personal Productivity | 🟢 Verified | 📘 Definition | 5.0/5 | `L1-L2` |
+| 77 | [Trip Planner](skills/trip-planner/) / 旅行规划 Agent | Personal Productivity | 🔵 Integration | 📘 Definition | 4.0/5 | `L3-L4` |
+| 78 | [Gift Recommender](skills/gift-recommender/) / 礼物推荐 | Personal Productivity | 🟡 Experimental | 📘 Definition | 3.5/5 | `L3` |
+| 79 | [Resume Builder](skills/resume-builder/) / 简历生成器 | Personal Productivity | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 80 | [Meal Planner](skills/meal-planner/) / 一周饮食计划 | Personal Productivity | 🔵 Integration | 📘 Definition | 4.0/5 | `L2-L3` |
+| 81 | [Conditional Reminder](skills/conditional-reminder/) / 条件式智能提醒 | Personal Productivity | 🔵 Integration | 📘 Definition | 4.0/5 | `L4` |
+| 82 | [Habit Planner](skills/habit-planner/) / 习惯计划生成 | Personal Productivity | 🟢 Verified | 📘 Definition | 4.0/5 | `L1-L2` |
+| 83 | [Read Later Digest](skills/read-later-digest/) / 稍后阅读摘要 | Personal Productivity | 🔵 Integration | 📘 Definition | 4.0/5 | `L3-L4` |
+| 84 | [Git Deploy](skills/git-deploy/) / Git 自动部署 | DevOps & System | 🟢 Verified | 📘 Definition | 4.0/5 | `L3-L5` |
+| 85 | [Backup Manager](skills/backup-manager/) / 自动备份管理 | DevOps & System | 🟢 Verified | 📘 Definition | 4.5/5 | `L2-L4` |
+| 86 | [SSL Manager](skills/ssl-manager/) / SSL 证书管理 | DevOps & System | 🟢 Verified | 📘 Definition | 4.5/5 | `L3-L4` |
+| 87 | [Service Monitor](skills/service-monitor/) / 服务健康监控 | DevOps & System | 🟢 Verified | 📘 Definition | 4.5/5 | `L4` |
+| 88 | [Server Security Audit](skills/server-security-audit/) / 服务器安全基线审计 | DevOps & System | 🔵 Integration | 📘 Definition | 4.0/5 | `L3-L5` |
+| 89 | [Docker Generator](skills/docker-generator/) / Docker 配置生成器 | DevOps & System | 🟢 Verified | 📘 Definition | 4.5/5 | `L2` |
+| 90 | [Secret Scanner](skills/secret-scanner/) / 密钥泄露扫描 | DevOps & System | 🟢 Verified | ✅ Runnable | 5.0/5 | `L2-L3` |
+| 91 | [Paper Summarizer](skills/paper-summarizer/) / 论文深度解读 | Education & Research | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 92 | [Flashcard Generator](skills/flashcard-generator/) / 学习卡片生成 | Education & Research | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 93 | [Study Plan](skills/study-plan/) / AI 学习计划 | Education & Research | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 94 | [Plain Language Explainer](skills/plain-language-explainer/) / 复杂知识讲人话 | Education & Research | 🟢 Verified | 📘 Definition | 5.0/5 | `L1` |
+| 95 | [Mind Map Generator](skills/mind-map-generator/) / 思维导图生成 | Education & Research | 🔵 Integration | 📘 Definition | 4.0/5 | `L2-L3` |
+| 96 | [Cheatsheet Generator](skills/cheatsheet-generator/) / 一页速查表 | Education & Research | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 97 | [Quiz Generator](skills/quiz-generator/) / AI 出题与解析 | Education & Research | 🟢 Verified | 📘 Definition | 4.5/5 | `L1-L2` |
+| 98 | [Book Knowledge Map](skills/book-knowledge-map/) / 书籍知识地图 | Education & Research | 🔵 Integration | 📘 Definition | 4.0/5 | `L2-L3` |
+| 99 | [Pronunciation Coach](skills/pronunciation-coach/) / AI 发音教练 | Education & Research | 🔵 Integration | 📘 Definition | 4.0/5 | `L3` |
+| 100 | [Course Builder](skills/course-builder/) / AI 课程生成器 | Education & Research | 🟡 Experimental | 📘 Definition | 3.5/5 | `L2-L3` |
+
+---
+
+## Repository structure
+
+```text
+open-workflow-skills/
+├── README.md
+├── CHANGELOG.md
+├── registry.json
+├── pyproject.toml
+├── open_workflow_skills/      # `ows` CLI
+├── skills/                    # 100 Agent Skills
+├── schemas/
+├── scripts/
+├── docs/
+└── .github/workflows/validate.yml
+```
+
+---
+
+## Evaluation / 测试
+
+```bash
+python3 scripts/validate_registry.py
+ows test
+```
+
+CI checks:
+
+- exactly 100 registered skills
+- valid v2 workflow/implementation metadata
+- required Agent Skill files
+- required runtime files for the 15 implemented skills
+- CLI smoke tests
+- deterministic per-skill smoke tests
+
+The rule remains simple: **do not ask an LLM to judge what code can verify mechanically.**
+
+---
+
+## Roadmap
+
+### v2.0 — Runtime foundation ✅
+- [x] separate workflow maturity from implementation status
+- [x] unified `ows` CLI
+- [x] 15 runnable reference implementations
+- [x] deterministic smoke tests
+- [x] CI exercises runnable skills
+
+### v2.1 — Deeper implementations
+- [ ] richer subtitle QA and ASS styling
+- [ ] XLSX support for spreadsheet skills
+- [ ] richer document extraction adapters
+- [ ] signed fixture corpus and golden outputs
+
+### v2.5 — Integrations
+- [ ] connector recipes for email/calendar/CRM/GitHub/Figma
+- [ ] OAuth/App setup docs
+- [ ] scheduler/webhook examples
+
+### v3.0 — Verified catalog
+- [ ] compatibility matrix across major Agent Skills clients
+- [ ] automated quality scorecards from eval runs
+- [ ] signed releases/checksums
+- [ ] searchable website
+
+---
+
+## Contributing
+
+A contribution must clearly state whether it adds a **workflow definition**, a **reference implementation**, or both. Runnable contributions need a smoke test and must not hide external dependencies. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).
+
+## Disclaimer
+
+Workflow definitions and reference implementations are provided as open-source building blocks. External APIs, model behavior, pricing, terms, permissions, and compatibility can change. Financial, legal, security, production infrastructure, and other consequential use cases require appropriate authorization and domain review.

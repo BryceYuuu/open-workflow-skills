@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Git / shell / project tests. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "development"
-  status: "production"
+  status: "verified"
+  implementation-status: "definition-only"
   automation-level: "L2"
   search-keywords: "debug-agent, Debug Agent, 自动 Debug Agent, AI debugging, debugging agent, fix code errors, 自动Debug, 代码排错"
   quality-score: "4.5/5"
@@ -26,13 +27,14 @@ Reproduce failures, trace relevant code paths, isolate root causes, apply minima
 
 ## Status / 状态
 
-- **Release status:** 🟢 Production Ready / 成熟可落地
+- **Workflow status:** 🟢 Verified Workflow / 已验证工作流
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** A
 - **Quality score:** 4.5/5
 - **Automation level:** L2
 - **Category:** Development & Engineering / 开发与工程
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

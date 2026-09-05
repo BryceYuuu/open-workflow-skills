@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Shell / Python / LLM. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "development"
-  status: "production"
+  status: "verified"
+  implementation-status: "definition-only"
   automation-level: "L2"
   search-keywords: "log-analyzer, Log Analyzer, 日志分析与故障复盘, AI log analysis, error log analyzer, incident analysis, 日志分析, 故障分析"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Cluster application or infrastructure logs, build an incident timeline, and prod
 
 ## Status / 状态
 
-- **Release status:** 🟢 Production Ready / 成熟可落地
+- **Workflow status:** 🟢 Verified Workflow / 已验证工作流
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** A
 - **Quality score:** 4.0/5
 - **Automation level:** L2
 - **Category:** Development & Engineering / 开发与工程
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

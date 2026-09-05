@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Search/maps/travel sources. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "personal-productivity"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L3-L4"
   search-keywords: "trip-planner, Trip Planner, 旅行规划 Agent, AI trip planner, travel itinerary, travel planning, AI旅行规划, 行程生成, personal productivity, AI assistant, personal automation, 个人效率, AI助手, 个人自动化"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Build practical itineraries from destination, time, budget, transport, and prefe
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L3-L4
 - **Category:** Personal Productivity / 个人效率
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

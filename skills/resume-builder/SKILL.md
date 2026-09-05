@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: LLM / document template optional. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "personal-productivity"
-  status: "production"
+  status: "verified"
+  implementation-status: "definition-only"
   automation-level: "L1-L2"
   search-keywords: "resume-builder, Resume Builder, 简历生成器, AI resume builder, ATS resume, CV generator, AI简历, 英文简历, personal productivity, AI assistant, personal automation, 个人效率, AI助手, 个人自动化"
   quality-score: "4.5/5"
@@ -26,13 +27,14 @@ Create master, targeted, ATS-oriented, bilingual resume variants strictly from v
 
 ## Status / 状态
 
-- **Release status:** 🟢 Production Ready / 成熟可落地
+- **Workflow status:** 🟢 Verified Workflow / 已验证工作流
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** A
 - **Quality score:** 4.5/5
 - **Automation level:** L1-L2
 - **Category:** Personal Productivity / 个人效率
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

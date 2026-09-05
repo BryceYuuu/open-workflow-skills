@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Social platform connector / FAQ store. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "communication-social"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L3-L4"
   search-keywords: "social-faq-reply, Social FAQ Reply, 社交媒体 FAQ 回复, social media auto reply, FAQ bot, DM automation, 私信自动回复, 客服自动回复, communication automation, social automation, AI writing assistant, 沟通自动化, 社交媒体自动化, AI写作"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Classify incoming social questions, draft approved FAQ answers, and escalate sen
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L3-L4
 - **Category:** Communication & Social / 沟通与社交
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

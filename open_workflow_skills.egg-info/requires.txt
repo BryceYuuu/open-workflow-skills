@@ -1,0 +1,10 @@
+
+[all]
+Pillow>=10
+openpyxl>=3.1
+
+[media]
+Pillow>=10
+
+[spreadsheets]
+openpyxl>=3.1

@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: rembg/segmentation model / image tools. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "design-creative"
-  status: "production"
+  status: "verified"
+  implementation-status: "definition-only"
   automation-level: "L2-L3"
   search-keywords: "background-remover, Background Remover, 自动抠图, AI background remover, remove image background, transparent PNG, 去背景, AI design, design automation, creative automation, AI设计, 设计自动化, 创意工作流"
   quality-score: "4.5/5"
@@ -26,13 +27,14 @@ Segment image subjects, refine masks, export transparent PNGs, and optionally co
 
 ## Status / 状态
 
-- **Release status:** 🟢 Production Ready / 成熟可落地
+- **Workflow status:** 🟢 Verified Workflow / 已验证工作流
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** A
 - **Quality score:** 4.5/5
 - **Automation level:** L2-L3
 - **Category:** Design & Creative / 设计与创意
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

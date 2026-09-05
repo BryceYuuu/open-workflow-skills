@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Python / Pandas. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "data-analytics"
-  status: "production"
+  status: "verified"
+  implementation-status: "tested-reference"
   automation-level: "L2"
   search-keywords: "data-cleaner, Data Cleaner, AI 数据清洗, AI data cleaning, CSV cleaning, Excel data cleaning, 数据清洗, 表格清洗, data automation, AI data analysis, Excel automation, analytics workflow, 数据自动化, 数据分析"
   quality-score: "4.5/5"
@@ -26,13 +27,14 @@ Profile datasets, propose a cleaning plan, standardize formats, detect duplicate
 
 ## Status / 状态
 
-- **Release status:** 🟢 Production Ready / 成熟可落地
+- **Workflow status:** 🟢 Verified Workflow / 已验证工作流
+- **Implementation:** ✅ Tested reference implementation / 已测试参考实现
 - **Audit grade:** A
 - **Quality score:** 4.5/5
 - **Automation level:** L2
 - **Category:** Data & Analytics / 数据与分析
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 
@@ -67,19 +69,29 @@ Treat permissions as capabilities to request or verify, **not as permissions aut
 
 ## Workflow / 工作流
 
-1. **Inspect / 检查输入** — Verify source files/data, format, scope, and user constraints.
-2. **Plan / 制定计划** — Select the deterministic tools, model calls, and external integrations needed.
-3. **Preflight / 运行前检查** — Check dependencies, credentials, permissions, destination paths, and destructive-action risk.
-4. **Execute / 执行** — Run the smallest reliable sequence of steps. Prefer deterministic code for calculations, parsing, rendering, and file operations.
-5. **Validate / 验证** — Verify output structure, counts, schemas, file readability, test results, or other task-specific invariants.
-6. **Review / 审核** — For subjective or consequential outputs, present a reviewable result before external publication, sending, payment, deployment, signing, or irreversible action.
-7. **Report / 汇报** — State what was produced, where it was saved, what was verified, and what still needs human review.
+1. **Load CSV without modifying source**
+2. **Trim and normalize whitespace**
+3. **Optionally deduplicate on explicit keys**
+4. **Write cleaned CSV**
+5. **Write cleaning report with row-loss accounting**
 
 ## Dependency suggestions / 依赖建议
 
 - Python: `python3 -m pip install pandas`
 
 The Agent Skill itself should remain installable even when optional runtimes are absent. Report missing runtime dependencies instead of silently installing privileged software.
+
+## Runnable reference / 可运行参考实现
+
+This skill ships a tested reference runtime in `scripts/run.py`. From a cloned repository:
+
+```bash
+ows doctor data-cleaner
+ows run data-cleaner -- --help
+ows test data-cleaner
+```
+
+`runtime.json` declares the entrypoint and optional system commands. Runtime dependencies are checked separately from installing the Skill definition.
 
 ## Install / 安装
 
@@ -147,4 +159,6 @@ If a dependency, credential, connected service, browser session, file, or requir
 - `references/QUALITY.md` — quality/evaluation guidance
 - `tests/cases.yaml` — example evaluation cases
 
-Implementation scripts may be added under `scripts/` when deterministic execution materially improves reliability.
+- `runtime.json` — runtime manifest
+- `scripts/run.py` — runnable reference implementation
+- `tests/smoke.py` — deterministic smoke test

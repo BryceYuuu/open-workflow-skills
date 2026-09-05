@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Database / scheduler / statistics / alerts. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "data-analytics"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L4"
   search-keywords: "data-anomaly-monitor, Data Anomaly Monitor, 数据异常监控, anomaly detection, data monitoring, metric alerting, 异常检测, 数据告警, data automation, AI data analysis, Excel automation, analytics workflow, 数据自动化, 数据分析"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Monitor metrics over time, detect statistically unusual changes, and use AI to e
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L4
 - **Category:** Data & Analytics / 数据与分析
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Document parser / LLM / office libraries. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "office-productivity"
   status: "experimental"
+  implementation-status: "definition-only"
   automation-level: "L2-L3"
   search-keywords: "document-translator, Document Translator, 文档翻译与排版保留, document translation, PDF translator, Word translator, PPT translator, 文档翻译, PDF翻译, office automation, AI productivity, workflow automation, 办公自动化, 效率工具"
   quality-score: "3.0/5"
@@ -26,13 +27,14 @@ Translate DOCX, PPTX, and supported PDFs while preserving structure where practi
 
 ## Status / 状态
 
-- **Release status:** 🟡 Experimental / Assisted / 实验性 / 辅助完成
+- **Workflow status:** 🟡 Experimental / Assisted / 实验性 / 辅助型 / 辅助完成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** C
 - **Quality score:** 3.0/5
 - **Automation level:** L2-L3
 - **Category:** Office & Productivity / 办公与效率
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

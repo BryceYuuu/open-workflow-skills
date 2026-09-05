@@ -1,63 +1,43 @@
-# Contributing
+# Contributing to Open Workflow Skills
 
-Thanks for improving Open Workflow Skills.
+Contributions are welcome, but v2 distinguishes **workflow definitions** from **runnable implementations**. Do not label a workflow runnable unless the repository contains code and a smoke test that CI can execute.
 
-## Before adding a skill
+## Contribution types
 
-A proposed skill should describe a repeatable workflow, not merely a generic prompt.
+### 1. Definition-only Skill
+Required:
+- `SKILL.md`
+- bilingual explanation
+- truthful dependencies and permissions
+- `references/QUALITY.md`
+- `tests/cases.yaml`
+- registry entry with `implementation_status: definition-only`
 
-Ask:
+### 2. Tested reference implementation
+In addition to the above:
+- `runtime.json`
+- `scripts/run.py` (or another declared entrypoint)
+- `tests/smoke.py`
+- deterministic validation of at least one valid path
+- clear handling of missing optional dependencies
+- registry entry with `implementation_status: tested-reference`
 
-- Does it have a clear trigger?
-- Are inputs and outputs explicit?
-- Can success be evaluated?
-- Are dependencies declared?
-- Are permissions visible?
-- Are external writes approval-gated where appropriate?
-- Is the description truthful about limitations?
+## Principles
+1. One clear, repeatable capability per Skill.
+2. No fake one-click claims.
+3. Preserve source data by default.
+4. Declare shell/network/account/credential requirements.
+5. Approval-gate consequential writes.
+6. Never commit real secrets or personal data as fixtures.
+7. Prefer deterministic checks over model self-grading.
+8. Chinese and English descriptions should both be understandable, not literal machine translations.
 
-## Folder format
+## Before opening a PR
 
-```text
-skills/<slug>/
-├── SKILL.md
-├── references/
-│   └── QUALITY.md
-└── tests/
-    └── cases.yaml
+```bash
+python3 scripts/validate_registry.py
+pip install -e '.[all]'
+ows test
 ```
 
-`<slug>` must use lowercase letters/numbers and single hyphens, and should match the `name` in `SKILL.md`.
-
-## Status labels
-
-Choose one:
-
-- `production`
-- `integration`
-- `experimental`
-
-Do not upgrade status based on a single demo.
-
-## Pull request checklist
-
-- [ ] English and Chinese descriptions are present.
-- [ ] Permissions are declared.
-- [ ] Dependencies are declared.
-- [ ] Failure behavior is defined.
-- [ ] Eval cases are included.
-- [ ] No secret or credential is committed.
-- [ ] `python3 scripts/validate_registry.py` passes.
-- [ ] High-impact actions require explicit authorization.
-
-## Scripts
-
-Scripts should:
-
-- fail loudly with useful error messages
-- avoid silent destructive behavior
-- support dry-run where practical
-- use non-zero exit codes on failure
-- validate inputs
-- quote shell variables
-- document runtime dependencies
+If your implementation requires a heavy or paid external service, provide an offline smoke path where possible and document the live integration separately.

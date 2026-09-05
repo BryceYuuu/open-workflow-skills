@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: TTS API. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "content-media"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L3"
   search-keywords: "voice-generator, Voice Generator, AI 配音生成, AI voice generator, text to speech, TTS, voiceover generator, AI配音, 文字转语音, AI content automation, content automation, video automation, social media automation, 内容自动化"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Turn scripts into controlled speech with pacing, pause, and style settings using
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L3
 - **Category:** Content & Media / 内容创作与媒体
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

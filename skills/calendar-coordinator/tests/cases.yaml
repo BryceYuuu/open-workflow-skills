@@ -1,5 +1,5 @@
 skill: calendar-coordinator
-version: "0.1.0"
+version: "2.0.0"
 cases:
   - id: smoke-basic
     intent: "Basic valid input produces a reviewable output."

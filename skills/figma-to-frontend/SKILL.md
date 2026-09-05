@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Figma API/MCP / frontend stack / browser. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "development"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L3-L4"
   search-keywords: "figma-to-frontend, Figma to Frontend, Figma 转前端, Figma to code, Figma to React, design to code, Figma转代码, 设计稿转前端"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Use authorized Figma design context to generate component structure, assets, res
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L3-L4
 - **Category:** Development & Engineering / 开发与工程
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

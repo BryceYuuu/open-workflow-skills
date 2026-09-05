@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Playwright / BeautifulSoup / Pandas. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "data-analytics"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L2-L4"
   search-keywords: "web-data-extractor, Web Data Extractor, 网页结构化数据采集, AI web scraper, web scraping, website data extraction, crawler, 网页爬虫, 网页数据采集, data automation, AI data analysis, Excel automation, analytics workflow, 数据自动化"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Extract public or authorized website data into a declared schema using browser a
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L2-L4
 - **Category:** Data & Analytics / 数据与分析
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

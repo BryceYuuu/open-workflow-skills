@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Pronunciation assessment API / audio tools. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "education-research"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L3"
   search-keywords: "pronunciation-coach, Pronunciation Coach, AI 发音教练, AI pronunciation coach, English pronunciation assessment, speaking feedback, 英语发音, 口语纠音, AI research, learning automation, education AI, 研究助手, 学习自动化, AI教育"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Use a configured pronunciation-assessment engine to evaluate phonemes, stress, r
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L3
 - **Category:** Education & Research / 教育与研究
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Market data / Python / backtesting library. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "business-growth"
   status: "experimental"
+  implementation-status: "definition-only"
   automation-level: "L2-L3"
   search-keywords: "strategy-backtest, Strategy Backtest, 交易策略回测, strategy backtesting, quant backtest, trading backtest, 策略回测, 量化回测, business automation, growth automation, AI business, 商业自动化, 增长自动化, AI商业"
   quality-score: "3.5/5"
@@ -26,13 +27,14 @@ Convert explicit trading rules into historical backtests with fees, slippage, an
 
 ## Status / 状态
 
-- **Release status:** 🟡 Experimental / Assisted / 实验性 / 辅助完成
+- **Workflow status:** 🟡 Experimental / Assisted / 实验性 / 辅助型 / 辅助完成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** C
 - **Quality score:** 3.5/5
 - **Automation level:** L2-L3
 - **Category:** Business & Growth / 商业与增长
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

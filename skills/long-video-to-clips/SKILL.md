@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: FFmpeg / ASR / LLM. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "content-media"
   status: "experimental"
+  implementation-status: "definition-only"
   automation-level: "L2-L3"
   search-keywords: "long-video-to-clips, Long Video to Clip Candidates, 长视频高光候选, AI clip generator, long video to shorts, video highlight detector, podcast clips, 长视频切片, 高光切片, AI content automation, content automation, video automation, social media automation, 内容自动化"
   quality-score: "3.5/5"
@@ -26,13 +27,14 @@ Analyze long-form video and produce short clip candidates based on topic boundar
 
 ## Status / 状态
 
-- **Release status:** 🟡 Experimental / Assisted / 实验性 / 辅助完成
+- **Workflow status:** 🟡 Experimental / Assisted / 实验性 / 辅助型 / 辅助完成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** C
 - **Quality score:** 3.5/5
 - **Automation level:** L2-L3
 - **Category:** Content & Media / 内容创作与媒体
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

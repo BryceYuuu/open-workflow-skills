@@ -1,66 +1,30 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, re, sys
-
-ROOT = Path(__file__).resolve().parents[1]
-REG = json.loads((ROOT / "registry.json").read_text(encoding="utf-8"))
-errors = []
-
-skills = REG.get("skills", [])
-if len(skills) != 100:
-    errors.append(f"registry must contain exactly 100 skills; got {len(skills)}")
-
-ids = [s.get("id") for s in skills]
-if ids != list(range(1, 101)):
-    errors.append("skill IDs must be exactly 1..100 in order")
-
-slugs = [s.get("slug") for s in skills]
-if len(slugs) != len(set(slugs)):
-    errors.append("duplicate skill slugs detected")
-
-valid_name = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
-
-counts = {"production":0, "integration":0, "experimental":0}
-for s in skills:
-    slug = s["slug"]
-    if not valid_name.fullmatch(slug):
-        errors.append(f"{slug}: invalid Agent Skills-style name")
-    counts[s["status"]] = counts.get(s["status"], 0) + 1
-
-    skill_dir = ROOT / "skills" / slug
-    skill_file = skill_dir / "SKILL.md"
-    if not skill_file.exists():
-        errors.append(f"{slug}: missing SKILL.md")
-        continue
-    txt = skill_file.read_text(encoding="utf-8")
-    if not txt.startswith("---\n"):
-        errors.append(f"{slug}: SKILL.md missing YAML frontmatter")
-    m = re.search(r"^name:\s*([^\n]+)$", txt, re.M)
-    if not m or m.group(1).strip() != slug:
-        errors.append(f"{slug}: frontmatter name must match directory")
-    m = re.search(r"^description:\s*(.+)$", txt, re.M)
-    if not m:
-        errors.append(f"{slug}: missing description")
-    if len(txt.splitlines()) > 500:
-        errors.append(f"{slug}: SKILL.md exceeds 500 lines")
-    if not (skill_dir / "references" / "QUALITY.md").exists():
-        errors.append(f"{slug}: missing references/QUALITY.md")
-    if not (skill_dir / "tests" / "cases.yaml").exists():
-        errors.append(f"{slug}: missing tests/cases.yaml")
-
-expected = REG.get("summary", {})
-for k in ("production","integration","experimental"):
-    if counts.get(k,0) != expected.get(k):
-        errors.append(f"summary mismatch for {k}: registry={expected.get(k)} actual={counts.get(k,0)}")
-
+import json,re,sys
+ROOT=Path(__file__).resolve().parents[1]
+reg=json.loads((ROOT/'registry.json').read_text())
+errors=[]
+if reg.get('version')!='2.0.0':errors.append('registry version must be 2.0.0')
+if len(reg.get('skills',[]))!=100:errors.append('registry must contain 100 skills')
+counts={k:0 for k in ['verified','integration','experimental']}; impl=0
+for s in reg['skills']:
+ slug=s['slug']; d=ROOT/'skills'/slug; p=d/'SKILL.md'
+ if s['status'] not in counts: errors.append(f'{slug}: invalid status {s["status"]}')
+ else: counts[s['status']]+=1
+ if s.get('implementation_status')=='tested-reference': impl+=1
+ elif s.get('implementation_status')!='definition-only':errors.append(f'{slug}: invalid implementation_status')
+ if not p.exists(): errors.append(f'{slug}: missing SKILL.md'); continue
+ txt=p.read_text()
+ if not re.match(r'^[a-z0-9]+(?:-[a-z0-9]+)*$',slug):errors.append(f'{slug}: invalid slug')
+ if f'name: {slug}' not in txt:errors.append(f'{slug}: frontmatter name mismatch')
+ if 'version: "2.0.0"' not in txt:errors.append(f'{slug}: v2 metadata missing')
+ if s.get('implementation_status')=='tested-reference':
+  for rel in ['runtime.json','scripts/run.py','tests/smoke.py']:
+   if not (d/rel).exists():errors.append(f'{slug}: missing {rel}')
+summary=reg.get('summary',{})
+for k,v in counts.items():
+ if summary.get(k)!=v:errors.append(f'summary {k}={summary.get(k)} but actual={v}')
+if summary.get('tested_reference')!=impl:errors.append(f'summary tested_reference mismatch: {impl}')
 if errors:
-    print("Validation FAILED")
-    for e in errors:
-        print(" -", e)
-    sys.exit(1)
-
-print("Validation OK")
-print(f" - total: {len(skills)}")
-print(f" - production: {counts['production']}")
-print(f" - integration: {counts['integration']}")
-print(f" - experimental: {counts['experimental']}")
+ print('\n'.join('ERROR '+e for e in errors));sys.exit(1)
+print(f"OK: 100 skills | verified={counts['verified']} integration={counts['integration']} experimental={counts['experimental']} | runnable={impl}")

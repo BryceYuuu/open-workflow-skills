@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: SVG tools / optional image model. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "design-creative"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L2-L3"
   search-keywords: "svg-icon-generator, SVG Icon Generator, SVG 图标生成, AI SVG generator, icon set generator, SVG icons, SVG图标, 图标生成, AI design, design automation, creative automation, AI设计, 设计自动化, 创意工作流"
   quality-score: "3.5/5"
@@ -26,13 +27,14 @@ Generate a consistent SVG icon set and normalize paths, viewBox, stroke, naming,
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 3.5/5
 - **Automation level:** L2-L3
 - **Category:** Design & Creative / 设计与创意
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

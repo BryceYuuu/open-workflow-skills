@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+open_workflow_skills/__init__.py
+open_workflow_skills/cli.py
+open_workflow_skills.egg-info/PKG-INFO
+open_workflow_skills.egg-info/SOURCES.txt
+open_workflow_skills.egg-info/dependency_links.txt
+open_workflow_skills.egg-info/entry_points.txt
+open_workflow_skills.egg-info/requires.txt
+open_workflow_skills.egg-info/top_level.txt

@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: LLM / Image API / typography renderer. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "content-media"
   status: "experimental"
+  implementation-status: "definition-only"
   automation-level: "L3"
   search-keywords: "thumbnail-generator, Thumbnail Generator, 视频封面候选生成, AI thumbnail generator, YouTube thumbnail, video cover generator, 视频封面生成, 封面图AI, AI content automation, content automation, video automation, social media automation, 内容自动化, 视频自动化"
   quality-score: "3.5/5"
@@ -26,13 +27,14 @@ Generate multiple thumbnail concepts and render candidates from title plus conte
 
 ## Status / 状态
 
-- **Release status:** 🟡 Experimental / Assisted / 实验性 / 辅助完成
+- **Workflow status:** 🟡 Experimental / Assisted / 实验性 / 辅助型 / 辅助完成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** C
 - **Quality score:** 3.5/5
 - **Automation level:** L3
 - **Category:** Content & Media / 内容创作与媒体
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: LLM / image generation optional / design tokens. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "design-creative"
   status: "experimental"
+  implementation-status: "definition-only"
   automation-level: "L3"
   search-keywords: "brand-kit-generator, Brand Kit Generator, 品牌视觉方向生成, AI brand kit, brand identity generator, logo color typography, 品牌视觉, 品牌设计, AI design, design automation, creative automation, AI设计, 设计自动化, 创意工作流"
   quality-score: "3.0/5"
@@ -26,13 +27,14 @@ Generate brand identity directions, palettes, typography proposals, tokens, and 
 
 ## Status / 状态
 
-- **Release status:** 🟡 Experimental / Assisted / 实验性 / 辅助完成
+- **Workflow status:** 🟡 Experimental / Assisted / 实验性 / 辅助型 / 辅助完成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** C
 - **Quality score:** 3.0/5
 - **Automation level:** L3
 - **Category:** Design & Creative / 设计与创意
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 

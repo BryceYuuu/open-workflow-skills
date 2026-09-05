@@ -5,9 +5,10 @@ license: MIT
 compatibility: "Cross-agent Agent Skills format. Core stack: Calendar connector. Check runtime dependencies before execution."
 metadata:
   project: "open-workflow-skills"
-  version: "0.1.0"
+  version: "2.0.0"
   category: "office-productivity"
   status: "integration"
+  implementation-status: "definition-only"
   automation-level: "L4"
   search-keywords: "calendar-coordinator, Calendar Coordinator, 会议时间协调, AI calendar assistant, meeting scheduler, calendar automation, 日程协调, 自动约会议, office automation, AI productivity, workflow automation, 办公自动化, 效率工具, AI办公"
   quality-score: "4.0/5"
@@ -26,13 +27,14 @@ Find mutually available meeting windows across calendars and propose or create e
 
 ## Status / 状态
 
-- **Release status:** 🔵 Integration Required / 需要外部集成
+- **Workflow status:** 🔵 Integration Required / 需要外部集成
+- **Implementation:** 📘 Definition only / 仅工作流定义
 - **Audit grade:** B
 - **Quality score:** 4.0/5
 - **Automation level:** L4
 - **Category:** Office & Productivity / 办公与效率
 
-> Status describes implementation risk, not whether the underlying capability is imaginary. Integration skills require external services or authorization. Experimental skills are technically feasible but quality or end-to-end reliability varies.
+> Workflow status describes how well the workflow itself is understood. Implementation status separately tells you whether this repository ships runnable code for it. Integration skills still require external services or authorization; experimental skills may need more human review.
 
 ## Search aliases / 搜索关键词
 
