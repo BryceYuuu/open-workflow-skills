@@ -22,6 +22,7 @@ jobs:
           echo "bfb2fc8936d8c723b6498a307263aed4bdf625df6bebb62fec9daa72e5b28dc1  /tmp/open-workflow-skills.tar.gz" | sha256sum -c -
           tar -xzf /tmp/open-workflow-skills.tar.gz -C .
           rm -rf .bootstrap
+          rm -f .github/workflows/validate.yml
 
       - name: Validate repository
         run: |
