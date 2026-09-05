@@ -1,0 +1,37 @@
+name: Bootstrap repository contents
+
+on:
+  push:
+    paths:
+      - ".bootstrap/archive.b64"
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Decode repository archive
+        run: |
+          base64 -d .bootstrap/archive.b64 > /tmp/open-workflow-skills.tar.gz
+          echo "077a6c3b21379ca263da863f9a60747fd65628571ebb26d29ba230d4c36f51c1  /tmp/open-workflow-skills.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/open-workflow-skills.tar.gz -C .
+          rm -f .bootstrap/archive.b64
+          rmdir .bootstrap 2>/dev/null || true
+
+      - name: Validate repository
+        run: |
+          python3 scripts/validate_registry.py
+          ./scripts/test.sh
+
+      - name: Commit expanded repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat: publish 100 open workflow skills"
+          git push
