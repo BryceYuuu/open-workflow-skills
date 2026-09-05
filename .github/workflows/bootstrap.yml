@@ -3,7 +3,7 @@ name: Bootstrap repository contents
 on:
   push:
     paths:
-      - ".bootstrap/archive.b64"
+      - ".bootstrap/READY"
 
 permissions:
   contents: write
@@ -15,13 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Decode repository archive
+      - name: Reassemble and decode repository archive
         run: |
-          base64 -d .bootstrap/archive.b64 > /tmp/open-workflow-skills.tar.gz
-          echo "077a6c3b21379ca263da863f9a60747fd65628571ebb26d29ba230d4c36f51c1  /tmp/open-workflow-skills.tar.gz" | sha256sum -c -
+          cat .bootstrap/part-* > /tmp/open-workflow-skills.b64
+          base64 -d /tmp/open-workflow-skills.b64 > /tmp/open-workflow-skills.tar.gz
+          echo "bfb2fc8936d8c723b6498a307263aed4bdf625df6bebb62fec9daa72e5b28dc1  /tmp/open-workflow-skills.tar.gz" | sha256sum -c -
           tar -xzf /tmp/open-workflow-skills.tar.gz -C .
-          rm -f .bootstrap/archive.b64
-          rmdir .bootstrap 2>/dev/null || true
+          rm -rf .bootstrap
 
       - name: Validate repository
         run: |
