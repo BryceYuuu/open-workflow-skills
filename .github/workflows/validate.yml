@@ -1,0 +1,40 @@
+name: Validate skills
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate registry and skill folders
+        run: python3 scripts/validate_registry.py
+
+      - name: Validate JSON
+        run: |
+          python3 -m json.tool registry.json >/dev/null
+          python3 -m json.tool schemas/registry.schema.json >/dev/null
+
+      - name: Agent Skills reference validation
+        continue-on-error: true
+        run: |
+          python3 -m venv .venv
+          . .venv/bin/activate
+          pip install "skills-ref @ git+https://github.com/agentskills/agentskills.git#subdirectory=skills-ref"
+          for d in skills/*/; do
+            skills-ref validate "$d"
+          done
+
+      - name: Community CLI discovery sanity check
+        continue-on-error: true
+        run: npx -y skills add . --list
