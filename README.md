@@ -358,3 +358,12 @@ MIT. See [`LICENSE`](LICENSE).
 ## Disclaimer
 
 Workflow definitions and reference implementations are provided as open-source building blocks. External APIs, model behavior, pricing, terms, permissions, and compatibility can change. Financial, legal, security, production infrastructure, and other consequential use cases require appropriate authorization and domain review.
+
+## Sponsor / 赞助支持
+
+If this project helps you, consider sponsoring to support ongoing maintenance.
+
+如果这个项目对你有帮助，欢迎赞助支持，让我能持续维护和更新。
+
+- [GitHub Sponsors](https://github.com/sponsors/BryceYuuu): card / PayPal
+- [爱发电 Afdian](https://afdian.com/a/bryce): 微信 / 支付宝 (WeChat Pay / Alipay)
